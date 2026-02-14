@@ -1,6 +1,7 @@
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import services from "@/data/services.json";
+import Link from "next/link";
 
 const ServiceDetails = async ({ params }) => {
   const { id: param } = await params;
@@ -8,19 +9,26 @@ const ServiceDetails = async ({ params }) => {
   console.log(service);
   const { id, image, title, description, hourlyRate, dailyRate, includings } =
     service || {};
-  service;
+
   return (
-    <div className="bg-primary/6 pb-20">
+    <div className="bg-primary/3 pb-20">
       <div className="container mx-auto pt-10">
-        <div className="flex items-center gap-2 cursor-pointer hover:-translate-x-1 transition hover:text-primary text-lg w-fit font-medium">
+        <Link
+          href="/services"
+          className="flex items-center gap-2 cursor-pointer hover:-translate-x-1 transition hover:text-primary text-lg w-fit font-medium"
+        >
           <FaArrowLeftLong />
           Back
-        </div>
+        </Link>
       </div>
 
-      <div className="container mx-auto mt-5 flex flex-col lg:flex-row gap-5">
+      <div className="container mx-auto mt-5 flex flex-col lg:flex-row gap-12">
         <div className="space-y-3 flex-1">
-          <img src={image} alt="" className="w-150 rounded-2xl" />
+          <img
+            src={image}
+            alt=""
+            className="h-90 w-full object-cover rounded-2xl"
+          />
           <h2 className="text-4xl font-bold">{title}</h2>
           <p className="text-gray-600 text-lg">{description}</p>
         </div>
@@ -41,10 +49,13 @@ const ServiceDetails = async ({ params }) => {
             </span>
           </div>
 
-          <p className="text-xl font-bold mt-10 mb-2">What&apos;s Included</p>
+          <p className="text-xl font-bold mt-5 mb-2">What&apos;s Included</p>
           <ul>
             {includings.map((i, ind) => (
-              <li key={ind} className="flex gap-2 items-center text-xl text-gray-500">
+              <li
+                key={ind}
+                className="flex gap-2 items-center text-xl text-gray-500"
+              >
                 <span className="text-primary">
                   <IoMdCheckmarkCircleOutline />
                 </span>
@@ -53,7 +64,9 @@ const ServiceDetails = async ({ params }) => {
             ))}
           </ul>
 
-          <button className="btn btn-primary text-white w-full mt-5 text-xl py-6">Book Now</button>
+          <button className="btn btn-primary text-white w-full mt-10 text-xl py-6 rounded-xl">
+            Book Now
+          </button>
         </div>
       </div>
     </div>

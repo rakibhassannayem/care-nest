@@ -11,7 +11,7 @@ const ServicesPage = () => {
           specialized professionals ready to help.
         </p>
       </div>
-      <div className="container mx-auto mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="container mx-auto my-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {services.map((service) => (
           <ServiceCard key={service.id} service={service} />
         ))}
