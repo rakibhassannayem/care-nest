@@ -1,12 +1,12 @@
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import services from "@/data/services.json";
+import services from "@/Data/services.json";
 import Link from "next/link";
 
 const ServiceDetails = async ({ params }) => {
   const { id: param } = await params;
   const service = services.find((i) => i.id === Number(param));
-  console.log(service);
+  // console.log(service);
   const { id, image, title, description, hourlyRate, dailyRate, includings } =
     service || {};
 
@@ -43,6 +43,12 @@ const ServiceDetails = async ({ params }) => {
                 </span>
                 /hour
               </p>
+              <p className="text-gray-500 font-medium">
+                <span className="text-primary text-lg  font-bold">
+                  ${dailyRate}
+                </span>
+                /day
+              </p>
             </div>
             <span className="badge bg-primary/15 text-primary font-bold px-4">
               Popular
@@ -64,9 +70,12 @@ const ServiceDetails = async ({ params }) => {
             ))}
           </ul>
 
-          <button className="btn btn-primary text-white w-full mt-10 text-xl py-6 rounded-xl">
+          <Link
+            href={`/checkout/${id}`}
+            className="btn btn-primary text-white w-full mt-10 text-xl py-6 rounded-xl"
+          >
             Book Now
-          </button>
+          </Link>
         </div>
       </div>
     </div>
