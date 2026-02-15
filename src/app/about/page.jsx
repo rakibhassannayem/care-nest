@@ -36,6 +36,7 @@ const page = () => {
             </div>
           </div>
         </div>
+        
         <div className="flex-1 grid grid-cols-2 gap-5">
           <div className="flex flex-col items-center justify-center bg-primary/3 shadow-sm rounded-xl py-5">
             <span className="text-primary text-2xl font-bold">10,000+</span>
