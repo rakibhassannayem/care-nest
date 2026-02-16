@@ -16,7 +16,7 @@ const Testimonials = () => {
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 my-8">
-        <div className="bg-base-300 p-5 rounded-xl space-y-3">
+        <div className="bg-base-200 p-5 rounded-xl space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-yellow-500">
               <FaStar size={20} />
@@ -29,7 +29,7 @@ const Testimonials = () => {
           </div>
 
           <p className="text-lg text-gray-700">
-            &quot;Care.xyz has been a lifesaver for our family. The babysitters
+            &quot;CareNest has been a lifesaver for our family. The babysitters
             are professional, caring, and my kids absolutely love them!&quot;
           </p>
 
@@ -44,7 +44,7 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <div className="bg-base-300 p-5 rounded-xl space-y-3">
+        <div className="bg-base-200 p-5 rounded-xl space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-yellow-500">
               <FaStar size={20} />
@@ -57,8 +57,9 @@ const Testimonials = () => {
           </div>
 
           <p className="text-lg text-gray-700">
-            &quot;Care.xyz has been a lifesaver for our family. The babysitters
-            are professional, caring, and my kids absolutely love them!&quot;
+            &quot;Finding quality care for my elderly parents was stressful
+            until I found CareNest. The caregivers are compassionate and
+            skilled.&quot;
           </p>
 
           <div className="flex items-center gap-3">
@@ -72,7 +73,7 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <div className="bg-base-300 p-5 rounded-xl space-y-3">
+        <div className="bg-base-200 p-5 rounded-xl space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-yellow-500">
               <FaStar size={20} />
