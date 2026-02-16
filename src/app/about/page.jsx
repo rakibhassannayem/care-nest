@@ -1,8 +1,8 @@
 import { FiCheckCircle } from "react-icons/fi";
 
-const page = () => {
+const About = () => {
   return (
-    <div className="container mx-auto my-10">
+    <div className="container mx-auto mt-10">
       <p className="text-primary font-bold">ABOUT CARE NEST</p>
 
       <div className="flex flex-col sm:flex-row gap-5">
@@ -60,4 +60,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default About;
