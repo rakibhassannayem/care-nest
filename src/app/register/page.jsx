@@ -12,6 +12,13 @@ const LoginPage = () => {
         </p>
       </div>
 
+      <label className="label text-lg">NID No</label>
+      <input
+        type="number"
+        className="input w-full text-base"
+        placeholder="National ID number"
+      />
+
       <label className="label text-lg">Full Name</label>
       <input
         type="text"

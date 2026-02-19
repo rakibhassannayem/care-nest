@@ -5,7 +5,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 const ServiceCard = ({ service }) => {
   const { id, image, title, subtitle, hourlyRate, dailyRate } = service || {};
   return (
-    <div className="card bg-base-100 shadow-sm">
+    <div className="card bg-primary/4 shadow-sm">
       <figure>
         <img src={image} className="h-50 w-full object-cover" />
       </figure>

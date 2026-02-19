@@ -1,5 +1,6 @@
 import { connect } from "@/app/lib/dbConnect";
 import { ObjectId } from "mongodb";
+import { revalidatePath } from "next/cache";
 
 const bookingCollection = connect("bookings");
 
@@ -31,6 +32,8 @@ export async function DELETE(request, { params }) {
 
   const query = { _id: new ObjectId(id) };
   const result = await bookingCollection.deleteOne(query);
+
+  revalidatePath("/bookings");
 
   return Response.json(result);
 }

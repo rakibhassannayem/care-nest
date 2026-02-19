@@ -3,7 +3,7 @@ import ServiceCard from "./_component/ServiceCard";
 
 const ServicesPage = () => {
   return (
-    <div className="bg-primary/5 py-5">
+    <div className="">
       <div className="text-center my-8 flex flex-col items-center">
         <h2 className="font-bold text-4xl">Our Specialized Care Services</h2>
         <p className="text-gray-500 flex text-lg mt-2 max-w-150">

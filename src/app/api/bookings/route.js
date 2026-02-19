@@ -1,4 +1,5 @@
 import { connect } from "@/app/lib/dbConnect";
+import { revalidatePath } from "next/cache";
 const bookingCollection = connect("bookings");
 
 export async function GET(request) {
@@ -8,21 +9,17 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  const { service } = await request.json();
+  const { bookingData } = await request.json();
 
-  if (!service || typeof service !== "string") {
-    return Response.json({
-      status: 400,
-      message: "please send a service",
-    });
-  }
-
-  const newService = {
-    service,
+  const newBooking = {
+    ...bookingData,
+    status: "pending",
     date: new Date().toISOString(),
   };
 
-  const result = await bookingCollection.insertOne(newService);
+  const result = await bookingCollection.insertOne(newBooking);
+
+  revalidatePath("/bookings");
 
   return Response.json(result);
 }
