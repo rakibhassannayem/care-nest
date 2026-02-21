@@ -1,10 +1,16 @@
 import { connect } from "@/app/lib/dbConnect";
-import { getToken } from "next-auth/jwt";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 import { revalidatePath } from "next/cache";
+
 const bookingCollection = connect("bookings");
 
 export async function GET(request) {
-  const result = await bookingCollection.find().toArray();
+  const session = await getServerSession(authOptions);
+
+  const result = await bookingCollection
+    .find({ userEmail: session?.user?.email })
+    .toArray();
 
   return Response.json(result);
 }
@@ -12,15 +18,12 @@ export async function GET(request) {
 export async function POST(request) {
   const { bookingData } = await request.json();
 
-  const token = await getToken({
-    req: request,
-    secret: process.env.NEXTAUTH_SECRET,
-  });
+  const session = await getServerSession(authOptions);
 
   const newBooking = {
     ...bookingData,
-    userEmail: token?.email,
-    userName: token?.name,
+    userEmail: session?.user?.email,
+    userName: session?.user?.name,
     status: "pending",
     date: new Date().toISOString(),
   };

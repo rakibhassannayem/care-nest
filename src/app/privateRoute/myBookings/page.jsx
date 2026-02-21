@@ -3,13 +3,18 @@ import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineDateRange } from "react-icons/md";
 import { TbCurrencyTaka } from "react-icons/tb";
 import BookingCancelBtn from "@/components/buttons/BookingCancelBtn";
+import { cookies } from "next/headers";
 
 export const metadata = {
   title: "My Bookings",
 };
 
+
 const getBookings = async () => {
   const result = await fetch(`${process.env.NEXTAUTH_URL}/api/bookings`, {
+    headers: {
+      cookie: (await cookies()).toString(),
+    },
     cache: "force-cache",
   });
 

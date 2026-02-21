@@ -2,10 +2,11 @@
 import { postUser } from "@/actions/server/auth";
 import Logo from "@/components/shared/Logo";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+
 import React from "react";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const router = useRouter();
   
   const handleRegister = async (e) => {
@@ -85,4 +86,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
