@@ -1,5 +1,6 @@
 "use client";
 
+import GoogleLoginBtn from "@/components/buttons/GoogleLoginBtn";
 import Logo from "@/components/shared/Logo";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
@@ -25,7 +26,7 @@ const LoginPage = () => {
       router.push("/");
     }
   };
-  
+
   return (
     <fieldset className="container mx-auto fieldset bg-primary/5 border-base-300 rounded-box w-md border p-6 mt-15">
       <div className="mx-auto text-2xl flex flex-col items-center">
@@ -55,7 +56,9 @@ const LoginPage = () => {
         <button className="btn btn-primary text-white text-lg mt-4 w-full">
           Login
         </button>
+
       </form>
+      <GoogleLoginBtn />
 
       <div className="text-center text-base mt-3">
         Don&apos;t have account?{" "}

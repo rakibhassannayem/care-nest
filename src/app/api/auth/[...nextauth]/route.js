@@ -2,6 +2,7 @@ import { connect } from "@/app/lib/dbConnect";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -9,19 +10,6 @@ export const authOptions = {
     CredentialsProvider({
       // (e.g. 'Sign in with...')
       name: "Credentials",
-
-      // credentials: {
-      //   email: {
-      //     label: "Email",
-      //     type: "email",
-      //     placeholder: "jsmith@example.com",
-      //   },
-      //   password: {
-      //     label: "Password",
-      //     type: "password",
-      //     placeholder: "Your Password",
-      //   },
-      // },
 
       async authorize(credentials, req) {
         const { email, password } = credentials;
@@ -38,7 +26,37 @@ export const authOptions = {
         return null;
       },
     }),
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
   ],
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      const isExists = await connect("users").findOne({ email: user?.email, provider: account?.provider })
+      if (isExists) return true
+
+      const newUser = {
+        provider: account?.provider,
+        name: user?.name,
+        email: user?.email,
+        image: user?.image,
+      }
+      const result = await connect("users").insertOne(newUser)
+      
+      return true
+    },
+    // async redirect({ url, baseUrl }) {
+    //   return baseUrl
+    // },
+    // async session({ session, token, user }) {
+    //   return session
+    // },
+    // async jwt({ token, user, account, profile, isNewUser }) {
+    //   return token
+    // }
+  }
 };
 
 const handler = NextAuth(authOptions);

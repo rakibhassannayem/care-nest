@@ -1,6 +1,7 @@
 "use client";
 import { postUser } from "@/actions/server/auth";
 import Logo from "@/components/shared/Logo";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -8,7 +9,7 @@ import React from "react";
 
 const RegisterPage = () => {
   const router = useRouter();
-  
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -25,7 +26,14 @@ const RegisterPage = () => {
       alert(res.message);
     } else {
       alert("Registration successful!");
-      router.push("/login");
+      const result = await signIn("credentials", {
+        email: userData?.email,
+        password: userData?.password,
+        redirect: false,
+      });
+      if (result?.ok) {
+        router.push("/");
+      }
     }
   };
 
