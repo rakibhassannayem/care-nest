@@ -5,7 +5,7 @@ import Logo from "@/components/shared/Logo";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -58,7 +58,9 @@ const LoginPage = () => {
         </button>
 
       </form>
-      <GoogleLoginBtn />
+      <Suspense fallback={<div>Loading...</div>}>
+        <GoogleLoginBtn />
+      </Suspense>
 
       <div className="text-center text-base mt-3">
         Don&apos;t have account?{" "}
