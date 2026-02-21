@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import Providers from "./lib/providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +15,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Care Nest",
+  title: {
+    default: "CareNest",
+    template: "%s | CareNest",
+  },
   description: "Where Families Feel Safe",
 };
 
@@ -24,15 +28,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header>
-          <Navbar />
-        </header>
-        <main className="min-h-[calc(100svh-130px)]">
-          {children}
-        </main>
-        <footer>
-          <Footer />
-        </footer>
+        <Providers>
+          <header>
+            <Navbar />
+          </header>
+          <main className="min-h-[calc(100svh-130px)]">{children}</main>
+          <footer>
+            <Footer />
+          </footer>
+        </Providers>
       </body>
     </html>
   );

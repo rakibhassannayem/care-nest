@@ -33,7 +33,7 @@ export async function DELETE(request, { params }) {
   const query = { _id: new ObjectId(id) };
   const result = await bookingCollection.deleteOne(query);
 
-  revalidatePath("/bookings");
+  revalidatePath("/privateRoute/myBookings");
 
   return Response.json(result);
 }

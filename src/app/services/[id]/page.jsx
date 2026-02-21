@@ -3,6 +3,10 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import services from "@/Data/services.json";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Service Details",
+};
+
 const ServiceDetails = async ({ params }) => {
   const { id: param } = await params;
   const service = services.find((i) => i.id === Number(param));
@@ -71,7 +75,7 @@ const ServiceDetails = async ({ params }) => {
           </ul>
 
           <Link
-            href={`/checkout/${id}`}
+            href={`/booking/${id}`}
             className="btn btn-primary text-white w-full mt-10 text-xl py-6 rounded-xl"
           >
             Book Now

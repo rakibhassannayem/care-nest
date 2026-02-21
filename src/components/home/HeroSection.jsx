@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineShield, MdAccessTime } from "react-icons/md";
 
@@ -21,16 +22,14 @@ const HeroSection = () => {
             accessible for everyone.
           </p>
 
-          <div className="flex items-center gap-3">
-            <button className="btn btn-primary text-white rounded-xl shadow-xl text-lg border-base-300 py-5">
-              Explore Services
-            </button>
-            <button className="btn btn-outline text-black rounded-xl shadow-xl text-lg border-base-300 py-5">
-              Get Started Free
-            </button>
-          </div>
+          <Link
+            href={"/services"}
+            className="btn btn-primary text-white rounded-xl shadow-xl text-lg border-base-300 py-5"
+          >
+            Explore Services
+          </Link>
 
-          <div className="flex items-center gap-3 text-primary mt-10">
+          <div className="flex items-center gap-3 text-primary mt-3">
             <div className="flex items-center gap-2">
               <MdOutlineShield size={24} />
               <p className="text-gray-500 font-medium">Verified Caregivers</p>

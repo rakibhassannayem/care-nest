@@ -1,8 +1,12 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import Logo from "./Logo";
+import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const { data: session, status } = useSession();
+
   const links = (
     <>
       <li>
@@ -12,10 +16,13 @@ const Navbar = () => {
         <Link href={"/services"}>Services</Link>
       </li>
       <li>
-        <Link href={"/bookings"}>Bookings</Link>
+        <Link href={"/privateRoute/myBookings"}>My Bookings</Link>
       </li>
       <li>
         <Link href={"/about"}>About</Link>
+      </li>
+      <li>
+        <Link href={"/privateRoute"}>Admin</Link>
       </li>
     </>
   );
@@ -56,17 +63,31 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div className="flex">
-            <Link href={"/login"} className="btn btn-ghost text-lg">
-              Login
-            </Link>
-            <Link
-              href={"/register"}
-              className="btn btn-primary text-base text-white rounded-full"
-            >
-              Register
-            </Link>
-          </div>
+          {status === "loading" ? (
+            <span className="loading loading-spinner text-primary loading-xl"></span>
+          ) : !session?.user?.email ? (
+            <div className="flex">
+              <Link href={"/login"} className="btn btn-ghost text-lg">
+                Login
+              </Link>
+              <Link
+                href={"/register"}
+                className="btn btn-primary text-base text-white rounded-full"
+              >
+                Register
+              </Link>
+            </div>
+          ) : (
+            <div className="flex flex-col sm:flex-row items-center gap-1">
+              <p className="font-bold text-primary">{session?.user?.name}</p>
+              <button
+                onClick={() => signOut()}
+                className="btn bg-red-500 font-bold text-base text-white rounded-full"
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

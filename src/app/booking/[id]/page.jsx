@@ -18,7 +18,7 @@ const districtsByDivision = (division) => {
   return districts;
 };
 
-const CheckoutPage = ({ params }) => {
+const BookingPage = ({ params }) => {
   const { id: paramId } = use(params);
   const router = useRouter();
   const serviceId = parseInt(paramId);
@@ -73,7 +73,7 @@ const CheckoutPage = ({ params }) => {
     const data = await res.json();
     if (data.insertedId) {
       alert("Booking Requested Successfully!");
-      router.push("/bookings");
+      router.push("/privateRoute/myBookings");
     }
   };
 
@@ -282,4 +282,4 @@ const CheckoutPage = ({ params }) => {
   );
 };
 
-export default CheckoutPage;
+export default BookingPage;

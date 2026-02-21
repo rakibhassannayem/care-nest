@@ -5,11 +5,11 @@ import { TbCurrencyTaka } from "react-icons/tb";
 import BookingCancelBtn from "@/components/buttons/BookingCancelBtn";
 
 export const metadata = {
-  title: "Bookings",
+  title: "My Bookings",
 };
 
 const getBookings = async () => {
-  const result = await fetch("http://localhost:3000/api/bookings", {
+  const result = await fetch(`${process.env.NEXTAUTH_URL}/api/bookings`, {
     cache: "force-cache",
   });
 
