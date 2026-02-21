@@ -5,6 +5,7 @@ import HeroSection from "@/components/home/HeroSection";
 import ServicesPage from "./services/page";
 
 export default function Home() {
+  // throw new Error("This is a test error!");
   return (
     <div className="space-y-20">
       <HeroSection />

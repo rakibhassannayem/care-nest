@@ -75,7 +75,7 @@ const ServiceDetails = async ({ params }) => {
           </ul>
 
           <Link
-            href={`/booking/${id}`}
+            href={`/privateRoute/booking/${id}`}
             className="btn btn-primary text-white w-full mt-10 text-xl py-6 rounded-xl"
           >
             Book Now
