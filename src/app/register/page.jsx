@@ -17,8 +17,16 @@ const RegisterPage = () => {
       nid: e.target.nid.value,
       name: e.target.name.value,
       email: e.target.email.value,
-      password: e.target.email.value,
+      password: e.target.password.value,
     };
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (!passwordRegex.test(userData.password)) {
+      alert(
+        "Password must be at least 6 characters long and contain both uppercase and lowercase letters."
+      );
+      return;
+    }
 
     const res = await postUser(userData);
 
@@ -77,6 +85,9 @@ const RegisterPage = () => {
           name="password"
           className="input w-full text-lg"
           placeholder="*********"
+          pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
+          title="Password must be at least 6 characters long and contain both uppercase and lowercase letters."
+          required
         />
 
         <button className="btn btn-primary text-white text-lg mt-4 w-full">

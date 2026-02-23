@@ -20,7 +20,10 @@ export const authOptions = {
 
         // step 2: check credentials
         const isPassOk = await bcrypt.compare(password, user?.password);
-
+        
+        user._id = user._id.toString()
+        console.log(user);
+        
         if (isPassOk) return user;
 
         return null;
@@ -34,18 +37,21 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      const isExists = await connect("users").findOne({ email: user?.email, provider: account?.provider })
-      if (isExists) return true
+      const isExists = await connect("users").findOne({
+        email: user?.email,
+        provider: account?.provider,
+      });
+      if (isExists) return true;
 
       const newUser = {
         provider: account?.provider,
         name: user?.name,
         email: user?.email,
         image: user?.image,
-      }
-      const result = await connect("users").insertOne(newUser)
-      
-      return true
+      };
+      const result = await connect("users").insertOne(newUser);
+
+      return true;
     },
     // async redirect({ url, baseUrl }) {
     //   return baseUrl
@@ -56,7 +62,7 @@ export const authOptions = {
     // async jwt({ token, user, account, profile, isNewUser }) {
     //   return token
     // }
-  }
+  },
 };
 
 const handler = NextAuth(authOptions);

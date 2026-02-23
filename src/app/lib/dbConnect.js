@@ -1,6 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri = process.env.URI;
-const database = process.env.DB_NAME;
+const uri = process.env.NEXT_PUBLIC_URI;
+const database = process.env.NEXT_PUBLIC_DB_NAME;
 
 const client = new MongoClient(uri, {
   serverApi: {
